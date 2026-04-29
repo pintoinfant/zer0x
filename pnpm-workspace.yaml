@@ -1,0 +1,6 @@
+packages:
+  - contracts
+  - agent
+  - uniswap
+
+onlyBuiltDependencies: bufferutil

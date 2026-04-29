@@ -1,0 +1,11 @@
+{
+  "name": "zer0x-payagent",
+  "version": "0.1.0",
+  "private": true,
+  "description": "PayAgent — An ERC-7857 iNFT that manages paycheck allocation using 0G Storage, 0G Compute, and Uniswap",
+  "scripts": {
+    "deploy": "pnpm --filter contracts deploy",
+    "bot": "pnpm --filter agent dev",
+    "compile": "pnpm --filter contracts compile"
+  }
+}
