@@ -1,0 +1,22 @@
+{
+  "name": "@zer0x/uniswap",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "compile": "hardhat compile",
+    "deploy:tokens": "hardhat run scripts/deployTokens.ts --network sepolia",
+    "create:pools": "hardhat run scripts/createPools.ts --network sepolia",
+    "mint": "hardhat run scripts/mintTokens.ts --network sepolia",
+    "setup": "pnpm deploy:tokens && pnpm create:pools",
+    "clean": "hardhat clean"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-ethers": "^3.0.8",
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "@openzeppelin/contracts": "^5.1.0",
+    "dotenv": "^16.4.7",
+    "ethers": "^6.13.4",
+    "hardhat": "^2.22.17",
+    "typescript": "^5.7.0"
+  }
+}
