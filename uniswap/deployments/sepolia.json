@@ -1,0 +1,36 @@
+{
+  "network": "sepolia",
+  "deployer": "0x16083d9586A7818D827836E8AAe5F1138d394b80",
+  "tokens": {
+    "USDC": {
+      "address": "0x7D040aA7AA4D80CF8b7c5F0DdeF66709A5A47Cd6",
+      "decimals": 6
+    },
+    "USDT": {
+      "address": "0xE476DF41754d77d7f11694A0d8Ad49182Dc9499a",
+      "decimals": 6
+    },
+    "WETH": {
+      "address": "0xfa7089dB18B234f701de19C6E46Ebbe0E98eD101",
+      "decimals": 18
+    },
+    "DAI": {
+      "address": "0x411E5A8CD04E1145c60354Be1c39C261dc241A28",
+      "decimals": 18
+    }
+  },
+  "pools": {
+    "USDC/WETH": {
+      "address": "0x2cca58af24a56Cf9822215BbFd3544AF63825267",
+      "fee": 10000
+    },
+    "USDC/DAI": {
+      "address": "0x527Cd5a45c0Ba27d4912D9a10a6B69efF63fba99",
+      "fee": 3000
+    },
+    "USDC/USDT": {
+      "address": "0x5652885b701548A6BFd20977b2116EebA5C5ac11",
+      "fee": 500
+    }
+  }
+}
