@@ -1,0 +1,24 @@
+{
+  "name": "@zer0x/agent",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "start": "tsx src/index.ts",
+    "build": "tsc"
+  },
+  "dependencies": {
+    "@grammyjs/conversations": "^2.0.3",
+    "grammy": "^1.35.0",
+    "@0gfoundation/0g-storage-ts-sdk": "^1.2.8",
+    "openai": "^4.77.0",
+    "ethers": "^6.13.4",
+    "dotenv": "^16.4.7"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.7.0"
+  }
+}
