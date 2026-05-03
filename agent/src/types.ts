@@ -21,8 +21,8 @@ export interface Bill {
   name: string;
   /** Amount in base currency (e.g., USDC) */
   amount: number;
-  /** When it's due: "monthly", "biweekly", or a specific day */
-  frequency: "monthly" | "biweekly" | "weekly";
+  /** When it's due: "monthly" or "weekly" */
+  frequency: "monthly" | "weekly";
   /** Priority: 1 = must pay, 2 = important, 3 = nice to have */
   priority: 1 | 2 | 3;
 }

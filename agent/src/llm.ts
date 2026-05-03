@@ -58,7 +58,7 @@ export class PayAgentLLM {
     parts.push(``);
 
     if (ctx.bills.length > 0) {
-      parts.push(`## Bills (must be paid)`);
+      parts.push(`## Bills (must be reserved)`);
       for (const bill of ctx.bills) {
         parts.push(`- ${bill.name}: $${bill.amount} (${bill.frequency}, priority ${bill.priority})`);
       }

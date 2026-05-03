@@ -524,18 +524,15 @@ async function addBillConversation(conversation: BotConversation, ctx: BotContex
   await ctx.reply("🗓 How often?", {
     reply_markup: new InlineKeyboard()
       .text("📅 Monthly", "freq_monthly").row()
-      .text("📅 Biweekly", "freq_biweekly").row()
       .text("📅 Weekly", "freq_weekly"),
   });
 
   const freqCb = await conversation.waitForCallbackQuery([
     "freq_monthly",
-    "freq_biweekly",
     "freq_weekly",
   ]);
   const freqMap: Record<string, Bill["frequency"]> = {
     freq_monthly: "monthly",
-    freq_biweekly: "biweekly",
     freq_weekly: "weekly",
   };
   const frequency = freqMap[String(freqCb.match)];
