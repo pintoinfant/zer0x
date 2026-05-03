@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#16161a"/>
+      <stop offset="100%" stop-color="#0a0a0b"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#e8c45a"/>
+      <stop offset="100%" stop-color="#c4943a"/>
+    </linearGradient>
+    <linearGradient id="teal" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2dd4bf"/>
+      <stop offset="50%" stop-color="#20b8a5"/>
+      <stop offset="100%" stop-color="#18a08e"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Outer circle -->
+  <circle cx="256" cy="256" r="248" fill="url(#bg)" stroke="url(#gold)" stroke-width="4"/>
+
+  <!-- Inner ring -->
+  <circle cx="256" cy="256" r="220" fill="none" stroke="#d4a543" stroke-width="1.5" opacity="0.25"/>
+
+  <!-- Circuit traces (AI element) -->
+  <!-- Left traces -->
+  <line x1="80" y1="200" x2="130" y2="200" stroke="#2dd4bf" stroke-width="2" opacity="0.4"/>
+  <circle cx="130" cy="200" r="3" fill="#2dd4bf" opacity="0.6"/>
+  <line x1="70" y1="256" x2="120" y2="256" stroke="#2dd4bf" stroke-width="2" opacity="0.3"/>
+  <circle cx="120" cy="256" r="3" fill="#2dd4bf" opacity="0.5"/>
+  <line x1="80" y1="312" x2="130" y2="312" stroke="#2dd4bf" stroke-width="2" opacity="0.4"/>
+  <circle cx="130" cy="312" r="3" fill="#2dd4bf" opacity="0.6"/>
+
+  <!-- Right traces -->
+  <line x1="382" y1="200" x2="432" y2="200" stroke="#2dd4bf" stroke-width="2" opacity="0.4"/>
+  <circle cx="382" cy="200" r="3" fill="#2dd4bf" opacity="0.6"/>
+  <line x1="392" y1="256" x2="442" y2="256" stroke="#2dd4bf" stroke-width="2" opacity="0.3"/>
+  <circle cx="392" cy="256" r="3" fill="#2dd4bf" opacity="0.5"/>
+  <line x1="382" y1="312" x2="432" y2="312" stroke="#2dd4bf" stroke-width="2" opacity="0.4"/>
+  <circle cx="382" cy="312" r="3" fill="#2dd4bf" opacity="0.6"/>
+
+  <!-- Stylized P letterform -->
+  <!-- Vertical stem -->
+  <rect x="175" y="138" width="28" height="236" rx="4" fill="url(#gold)"/>
+
+  <!-- P bowl (arc) -->
+  <path d="M 189 138 L 280 138 C 350 138 350 270 280 270 L 203 270"
+        fill="none" stroke="url(#gold)" stroke-width="28" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Arrow element (payment/swap direction) -->
+  <path d="M 280 320 L 340 356 L 280 392" fill="none" stroke="url(#teal)" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+  <line x1="200" y1="356" x2="335" y2="356" stroke="url(#teal)" stroke-width="12" stroke-linecap="round"/>
+
+  <!-- Small decorative dots -->
+  <circle cx="370" cy="148" r="5" fill="#d4a543" opacity="0.3"/>
+  <circle cx="395" cy="172" r="3" fill="#2dd4bf" opacity="0.3"/>
+  <circle cx="145" cy="380" r="4" fill="#d4a543" opacity="0.25"/>
+  <circle cx="120" cy="360" r="3" fill="#2dd4bf" opacity="0.3"/>
+</svg>
