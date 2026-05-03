@@ -24,11 +24,8 @@
     --red-dim: rgba(239,100,97,0.1);
     --serif: 'Instrument Serif', Georgia, serif;
     --mono: 'JetBrains Mono', 'Fira Code', monospace;
-    --sans: 'Inter', system-ui, sans-serif;
   }
-
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
   html, body {
     width: 100%; height: 100%;
     background: var(--bg);
@@ -38,488 +35,131 @@
     font-weight: 400;
     -webkit-font-smoothing: antialiased;
   }
-
-  /* Noise overlay */
   body::before {
     content: '';
-    position: fixed;
-    inset: 0;
-    z-index: 9999;
-    pointer-events: none;
-    opacity: 0.035;
+    position: fixed; inset: 0;
+    z-index: 9999; pointer-events: none; opacity: 0.035;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
-    background-repeat: repeat;
-    background-size: 256px 256px;
+    background-repeat: repeat; background-size: 256px 256px;
   }
-
-  /* Slide wrapper */
-  .deck {
-    width: 100vw; height: 100vh;
-    position: relative;
-  }
-
+  .deck { width: 100vw; height: 100vh; position: relative; }
   .slide {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 6vh 8vw;
-    opacity: 0;
-    transform: translateX(40px);
-    transition: opacity 0.6s cubic-bezier(0.22,1,0.36,1),
-                transform 0.6s cubic-bezier(0.22,1,0.36,1);
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 5vh 8vw;
+    opacity: 0; transform: translateX(40px);
+    transition: opacity 0.6s cubic-bezier(0.22,1,0.36,1), transform 0.6s cubic-bezier(0.22,1,0.36,1);
     pointer-events: none;
-    will-change: opacity, transform;
   }
-
-  .slide.active {
-    opacity: 1;
-    transform: translateX(0);
-    pointer-events: auto;
-  }
-
-  .slide.exiting {
-    opacity: 0;
-    transform: translateX(-40px);
-  }
-
-  /* Staggered children */
-  .slide.active .reveal {
-    animation: revealUp 0.7s cubic-bezier(0.22,1,0.36,1) both;
-  }
+  .slide.active { opacity: 1; transform: translateX(0); pointer-events: auto; }
+  .slide.exiting { opacity: 0; transform: translateX(-40px); }
+  .slide.active .reveal { animation: revealUp 0.7s cubic-bezier(0.22,1,0.36,1) both; }
   .slide.active .reveal:nth-child(1) { animation-delay: 0.1s; }
   .slide.active .reveal:nth-child(2) { animation-delay: 0.2s; }
   .slide.active .reveal:nth-child(3) { animation-delay: 0.3s; }
   .slide.active .reveal:nth-child(4) { animation-delay: 0.4s; }
   .slide.active .reveal:nth-child(5) { animation-delay: 0.5s; }
-  .slide.active .reveal:nth-child(6) { animation-delay: 0.55s; }
-  .slide.active .reveal:nth-child(7) { animation-delay: 0.6s; }
-  .slide.active .reveal:nth-child(8) { animation-delay: 0.65s; }
-  .slide.active .reveal:nth-child(9) { animation-delay: 0.7s; }
-
   @keyframes revealUp {
     from { opacity: 0; transform: translateY(18px); }
     to   { opacity: 1; transform: translateY(0); }
   }
-
-  /* Typography */
-  h1 {
-    font-family: var(--serif);
-    font-weight: 400;
-    font-size: clamp(3rem, 6vw, 5.5rem);
-    line-height: 1.05;
-    letter-spacing: -0.02em;
-    color: var(--text);
-  }
-
-  h2 {
-    font-family: var(--serif);
-    font-weight: 400;
-    font-size: clamp(2rem, 3.5vw, 3.2rem);
-    line-height: 1.15;
-    letter-spacing: -0.01em;
-    color: var(--text);
-    margin-bottom: 2rem;
-  }
-
-  h3 {
-    font-family: var(--mono);
-    font-weight: 500;
-    font-size: 0.7rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 1rem;
-  }
-
-  p, li {
-    font-family: var(--mono);
-    font-weight: 300;
-    font-size: clamp(0.85rem, 1.2vw, 1.05rem);
-    line-height: 1.7;
-    color: var(--text-dim);
-  }
-
+  h1 { font-family: var(--serif); font-weight: 400; font-size: clamp(3rem, 6vw, 5.5rem); line-height: 1.05; letter-spacing: -0.02em; }
+  h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(1.8rem, 3.2vw, 2.8rem); line-height: 1.15; margin-bottom: 1.5rem; }
+  h3 { font-family: var(--mono); font-weight: 500; font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.8rem; }
+  p, li { font-family: var(--mono); font-weight: 300; font-size: clamp(0.82rem, 1.1vw, 1rem); line-height: 1.7; color: var(--text-dim); }
   .accent { color: var(--accent); }
   .teal { color: var(--teal); }
   .dim { color: var(--text-muted); }
   .serif-i { font-family: var(--serif); font-style: italic; }
-
-  /* Horizontal rule */
-  .rule {
-    width: 48px; height: 1px;
-    background: var(--accent);
-    margin: 1.5rem 0;
-    opacity: 0.6;
-  }
-
-  /* Tag pill */
-  .tag {
-    display: inline-block;
-    font-family: var(--mono);
-    font-size: 0.65rem;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    padding: 4px 12px;
-    border-radius: 2px;
-    margin-right: 8px;
-    margin-bottom: 6px;
-  }
+  .rule { width: 48px; height: 1px; background: var(--accent); margin: 1.2rem 0; opacity: 0.6; }
+  .tag { display: inline-block; font-family: var(--mono); font-size: 0.6rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 10px; border-radius: 2px; margin-right: 6px; margin-bottom: 4px; }
   .tag--gold { background: var(--accent-dim); color: var(--accent); border: 1px solid rgba(212,165,67,0.2); }
   .tag--teal { background: var(--teal-dim); color: var(--teal); border: 1px solid rgba(45,212,191,0.15); }
   .tag--red  { background: var(--red-dim); color: var(--red); border: 1px solid rgba(239,100,97,0.15); }
   .tag--dim  { background: rgba(255,255,255,0.03); color: var(--text-muted); border: 1px solid var(--border); }
-
-  /* Layout helpers */
-  .row { display: flex; gap: 4vw; align-items: flex-start; }
+  .row { display: flex; gap: 3.5vw; align-items: flex-start; }
   .col { flex: 1; }
-  .col-narrow { flex: 0 0 38%; }
-  .col-wide { flex: 0 0 58%; }
-  .gap-sm { gap: 0.6rem; }
-  .gap-md { gap: 1.2rem; }
+  .col-narrow { flex: 0 0 36%; }
+  .col-wide { flex: 0 0 60%; }
   .stack { display: flex; flex-direction: column; }
-  .mt-1 { margin-top: 0.6rem; }
-  .mt-2 { margin-top: 1.2rem; }
-  .mt-3 { margin-top: 2rem; }
+  .gap-sm { gap: 0.5rem; }
+  .gap-md { gap: 1rem; }
+  .mt-1 { margin-top: 0.5rem; }
+  .mt-2 { margin-top: 1rem; }
 
-  /* Allocation table */
-  .alloc-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-family: var(--mono);
-    font-size: 0.8rem;
-    margin-top: 1.2rem;
-  }
-  .alloc-table th {
-    text-align: left;
-    font-weight: 500;
-    font-size: 0.6rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    padding: 0 0 8px 0;
-    border-bottom: 1px solid var(--border);
-  }
-  .alloc-table td {
-    padding: 10px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.03);
-    color: var(--text-dim);
-    font-weight: 300;
-  }
+  /* Table */
+  .alloc-table { width: 100%; border-collapse: collapse; font-family: var(--mono); font-size: 0.78rem; margin-top: 0.8rem; }
+  .alloc-table th { text-align: left; font-weight: 500; font-size: 0.58rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); padding: 0 0 6px 0; border-bottom: 1px solid var(--border); }
+  .alloc-table td { padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.03); color: var(--text-dim); font-weight: 300; }
   .alloc-table tr.swap td { color: var(--teal); }
   .alloc-table .amount { text-align: right; font-weight: 500; color: var(--text); }
   .alloc-table .token { color: var(--accent); font-weight: 400; }
-  .alloc-table .action { font-size: 0.7rem; color: var(--text-muted); }
+  .alloc-table .action { font-size: 0.68rem; color: var(--text-muted); }
   .alloc-table tr.swap .action { color: var(--teal); }
 
-  /* Code block */
-  .code-block {
-    background: var(--bg-subtle);
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    padding: 1.2rem 1.5rem;
-    font-family: var(--mono);
-    font-size: 0.78rem;
-    line-height: 1.8;
-    color: var(--text-dim);
-    white-space: pre;
-    overflow-x: auto;
-  }
+  /* Code */
+  .code-block { background: var(--bg-subtle); border: 1px solid var(--border); border-radius: 4px; padding: 1rem 1.2rem; font-family: var(--mono); font-size: 0.72rem; line-height: 1.8; color: var(--text-dim); white-space: pre; overflow-x: auto; }
   .code-block .hl { color: var(--accent); }
   .code-block .tl { color: var(--teal); }
   .code-block .cm { color: var(--text-muted); }
 
-  /* Bar chart */
-  .bar-group { margin: 0.6rem 0; }
-  .bar-label {
-    font-family: var(--mono);
-    font-size: 0.72rem;
-    color: var(--text-dim);
-    margin-bottom: 4px;
-    display: flex;
-    justify-content: space-between;
-  }
-  .bar-track {
-    height: 28px;
-    background: rgba(255,255,255,0.02);
-    border-radius: 2px;
-    overflow: hidden;
-    position: relative;
-  }
-  .bar-fill {
-    height: 100%;
-    border-radius: 2px;
-    transition: width 1s cubic-bezier(0.22,1,0.36,1);
-    display: flex;
-    align-items: center;
-    padding-left: 10px;
-    font-family: var(--mono);
-    font-size: 0.65rem;
-    font-weight: 500;
-  }
+  /* Bars */
+  .bar-group { margin: 0.5rem 0; }
+  .bar-label { font-family: var(--mono); font-size: 0.7rem; color: var(--text-dim); margin-bottom: 3px; display: flex; justify-content: space-between; }
+  .bar-track { height: 26px; background: rgba(255,255,255,0.02); border-radius: 2px; overflow: hidden; }
+  .bar-fill { height: 100%; border-radius: 2px; display: flex; align-items: center; padding-left: 10px; font-family: var(--mono); font-size: 0.62rem; font-weight: 500; }
   .bar-fill--gold { background: linear-gradient(90deg, var(--accent-dim), rgba(212,165,67,0.25)); color: var(--accent); }
   .bar-fill--teal { background: linear-gradient(90deg, var(--teal-dim), rgba(45,212,191,0.2)); color: var(--teal); }
   .bar-fill--red  { background: linear-gradient(90deg, var(--red-dim), rgba(239,100,97,0.18)); color: var(--red); }
 
-  /* Chat mockup */
-  .chat {
-    background: var(--bg-subtle);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 1.2rem;
-    max-width: 420px;
-    font-family: var(--mono);
-    font-size: 0.75rem;
-  }
-  .chat-msg {
-    margin-bottom: 0.7rem;
-    line-height: 1.6;
-  }
-  .chat-msg.user {
-    text-align: right;
-  }
-  .chat-msg .bubble {
-    display: inline-block;
-    padding: 6px 12px;
-    border-radius: 6px;
-    max-width: 85%;
-    text-align: left;
-  }
-  .chat-msg.bot .bubble {
-    background: rgba(255,255,255,0.04);
-    color: var(--text-dim);
-    border: 1px solid var(--border);
-  }
-  .chat-msg.user .bubble {
-    background: var(--accent-dim);
-    color: var(--accent);
-    border: 1px solid rgba(212,165,67,0.15);
-  }
-  .chat-cmd {
-    color: var(--teal);
-    font-weight: 500;
-  }
-
-  /* Arch node */
-  .arch-flow {
-    display: flex;
-    align-items: center;
-    gap: 0;
-    margin: 1.5rem 0;
-    flex-wrap: wrap;
-  }
-  .arch-node {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    padding: 1rem 1.4rem;
-    border-radius: 4px;
-    text-align: center;
-    min-width: 140px;
-  }
-  .arch-node .node-label {
-    font-family: var(--mono);
-    font-size: 0.7rem;
-    font-weight: 500;
-    color: var(--text);
-    margin-bottom: 2px;
-  }
-  .arch-node .node-sub {
-    font-family: var(--mono);
-    font-size: 0.6rem;
-    color: var(--text-muted);
-  }
+  /* Arch */
+  .arch-flow { display: flex; align-items: center; gap: 0; margin: 1rem 0; flex-wrap: wrap; }
+  .arch-node { background: var(--bg-card); border: 1px solid var(--border); padding: 0.7rem 1.2rem; border-radius: 4px; text-align: center; min-width: 120px; }
+  .arch-node .node-label { font-family: var(--mono); font-size: 0.68rem; font-weight: 500; color: var(--text); }
+  .arch-node .node-sub { font-family: var(--mono); font-size: 0.55rem; color: var(--text-muted); }
   .arch-node--accent { border-color: rgba(212,165,67,0.3); }
   .arch-node--accent .node-label { color: var(--accent); }
   .arch-node--teal { border-color: rgba(45,212,191,0.25); }
   .arch-node--teal .node-label { color: var(--teal); }
-  .arch-arrow {
-    font-family: var(--mono);
-    color: var(--text-muted);
-    padding: 0 0.8rem;
-    font-size: 0.9rem;
-  }
-  .arch-row-2 {
-    display: flex;
-    gap: 1.5rem;
-    margin-top: 1rem;
-  }
-  .arch-node-wide {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    padding: 0.8rem 1.4rem;
-    border-radius: 4px;
-    flex: 1;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-  }
-  .arch-node-wide .node-label { font-family: var(--mono); font-size: 0.7rem; font-weight: 500; color: var(--text-dim); }
-  .arch-node-wide .node-sub { font-family: var(--mono); font-size: 0.6rem; color: var(--text-muted); }
+  .arch-arrow { font-family: var(--mono); color: var(--text-muted); padding: 0 0.6rem; font-size: 0.85rem; }
+  .arch-row-2 { display: flex; gap: 1rem; margin-top: 0.8rem; }
+  .arch-node-wide { background: var(--bg-card); border: 1px solid var(--border); padding: 0.6rem 1rem; border-radius: 4px; flex: 1; display: flex; align-items: center; gap: 0.8rem; }
+  .arch-node-wide .node-label { font-family: var(--mono); font-size: 0.65rem; font-weight: 500; color: var(--text-dim); }
+  .arch-node-wide .node-sub { font-family: var(--mono); font-size: 0.55rem; color: var(--text-muted); }
 
-  /* Quote block */
-  .quote-block {
-    border-left: 2px solid var(--accent);
-    padding: 0.8rem 0 0.8rem 1.2rem;
-    margin: 1rem 0;
-  }
-  .quote-block p {
-    font-family: var(--serif);
-    font-style: italic;
-    font-size: 1.1rem;
-    color: var(--text);
-    line-height: 1.5;
-  }
+  /* Quote */
+  .quote-block { border-left: 2px solid var(--accent); padding: 0.6rem 0 0.6rem 1rem; margin: 0.8rem 0; }
+  .quote-block p { font-family: var(--serif); font-style: italic; font-size: 1.05rem; color: var(--text); line-height: 1.5; }
 
-  /* Stat */
-  .stat-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-    margin-top: 1.5rem;
-  }
-  .stat-item {}
-  .stat-num {
-    font-family: var(--serif);
-    font-size: 2.4rem;
-    color: var(--text);
-    line-height: 1;
-  }
-  .stat-label {
-    font-family: var(--mono);
-    font-size: 0.65rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    margin-top: 0.3rem;
-  }
+  /* Stats */
+  .stat-grid { display: grid; grid-template-columns: 1fr; gap: 1.4rem; }
+  .stat-num { font-family: var(--serif); font-size: 2.2rem; color: var(--text); line-height: 1; }
+  .stat-label { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-top: 0.2rem; }
 
-  /* Navigation */
-  .nav {
-    position: fixed;
-    bottom: 3vh;
-    right: 4vw;
-    z-index: 100;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    font-family: var(--mono);
-    font-size: 0.65rem;
-    color: var(--text-muted);
-  }
-  .nav-btn {
-    width: 36px; height: 36px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    color: var(--text-dim);
-    cursor: pointer;
-    font-size: 0.9rem;
-    transition: border-color 0.2s, color 0.2s;
-  }
-  .nav-btn:hover { border-color: var(--accent); color: var(--accent); }
-
-  /* Progress bar */
-  .progress {
-    position: fixed;
-    top: 0; left: 0;
-    height: 2px;
-    background: var(--accent);
-    transition: width 0.5s cubic-bezier(0.22,1,0.36,1);
-    z-index: 100;
-  }
-
-  /* Diff arrows */
-  .diff-up { color: var(--teal); }
-  .diff-down { color: var(--red); }
-
-  /* List style */
-  .clean-list { list-style: none; }
-  .clean-list li {
-    padding: 0.35rem 0;
-    padding-left: 1.2rem;
-    position: relative;
-  }
-  .clean-list li::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 50%;
-    width: 5px; height: 5px;
-    border-radius: 1px;
-    background: var(--accent);
-    opacity: 0.5;
-    transform: translateY(-50%) rotate(45deg);
-  }
-
-  /* Stack list */
-  .stack-lines {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-  .stack-line {
-    font-family: var(--serif);
-    font-size: clamp(1.3rem, 2.2vw, 2rem);
-    line-height: 1.3;
-    color: var(--text);
-  }
-  .stack-line .num {
-    font-family: var(--mono);
-    font-size: 0.6rem;
-    font-weight: 600;
-    color: var(--text-muted);
-    margin-right: 1rem;
-    vertical-align: middle;
-    letter-spacing: 0.05em;
-  }
-
-  /* Tech stack grid */
-  .tech-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.8rem;
-    margin-top: 1rem;
-  }
-  .tech-item {
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
-    padding: 0.7rem 1rem;
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: 4px;
-  }
-  .tech-item .tech-name {
-    font-family: var(--mono);
-    font-size: 0.78rem;
-    font-weight: 500;
-    color: var(--text);
-  }
-  .tech-item .tech-desc {
-    font-family: var(--mono);
-    font-size: 0.6rem;
-    color: var(--text-muted);
-  }
-  .tech-dot {
-    width: 6px; height: 6px;
-    border-radius: 1px;
-    transform: rotate(45deg);
-    flex-shrink: 0;
-  }
+  /* Tech */
+  .tech-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; margin-top: 0.8rem; }
+  .tech-item { display: flex; align-items: center; gap: 0.7rem; padding: 0.55rem 0.9rem; background: var(--bg-card); border: 1px solid var(--border); border-radius: 4px; }
+  .tech-item .tech-name { font-family: var(--mono); font-size: 0.72rem; font-weight: 500; color: var(--text); }
+  .tech-item .tech-desc { font-family: var(--mono); font-size: 0.55rem; color: var(--text-muted); }
+  .tech-dot { width: 5px; height: 5px; border-radius: 1px; transform: rotate(45deg); flex-shrink: 0; }
   .tech-dot--gold { background: var(--accent); }
   .tech-dot--teal { background: var(--teal); }
 
-  /* Responsive */
+  /* Stack lines */
+  .stack-lines { display: flex; flex-direction: column; gap: 0.4rem; }
+  .stack-line { font-family: var(--serif); font-size: clamp(1.2rem, 2vw, 1.8rem); line-height: 1.3; color: var(--text); }
+  .stack-line .num { font-family: var(--mono); font-size: 0.58rem; font-weight: 600; color: var(--text-muted); margin-right: 0.8rem; vertical-align: middle; letter-spacing: 0.05em; }
+
+  /* Nav */
+  .nav { position: fixed; bottom: 2.5vh; right: 4vw; z-index: 100; display: flex; align-items: center; gap: 14px; font-family: var(--mono); font-size: 0.6rem; color: var(--text-muted); }
+  .nav-btn { width: 34px; height: 34px; display: flex; align-items: center; justify-content: center; background: var(--bg-card); border: 1px solid var(--border); border-radius: 4px; color: var(--text-dim); cursor: pointer; font-size: 0.85rem; transition: border-color 0.2s, color 0.2s; }
+  .nav-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .progress { position: fixed; top: 0; left: 0; height: 2px; background: var(--accent); transition: width 0.5s cubic-bezier(0.22,1,0.36,1); z-index: 100; }
+
   @media (max-width: 900px) {
-    .row { flex-direction: column; gap: 2rem; }
+    .row { flex-direction: column; gap: 1.5rem; }
     .col-narrow, .col-wide { flex: auto; }
     .slide { padding: 4vh 6vw; }
-    .stat-grid { grid-template-columns: repeat(2, 1fr); }
     .arch-flow { flex-direction: column; }
     .arch-arrow { transform: rotate(90deg); }
   }
@@ -531,7 +171,7 @@
 
 <div class="deck" id="deck">
 
-  <!-- ====== SLIDE 1: TITLE ====== -->
+  <!-- ====== 1: TITLE ====== -->
   <div class="slide active" data-slide="0">
     <div class="reveal">
       <h3>ERC-7857 iNFT &nbsp;&middot;&nbsp; 0G Network &nbsp;&middot;&nbsp; Uniswap V3</h3>
@@ -539,72 +179,44 @@
     <div class="reveal">
       <h1>PayAgent</h1>
     </div>
-    <div class="reveal" style="margin-top: 1.2rem;">
-      <p style="font-size: clamp(1rem, 1.6vw, 1.3rem); color: var(--text-dim); font-family: var(--serif); font-style: italic;">
+    <div class="reveal" style="margin-top: 1rem;">
+      <p style="font-size: clamp(1rem, 1.5vw, 1.2rem); color: var(--text-dim); font-family: var(--serif); font-style: italic;">
         Your AI financial agent, on-chain.
       </p>
     </div>
     <div class="rule reveal"></div>
     <div class="reveal">
-      <p style="font-size: 0.75rem; color: var(--text-muted);">
+      <p style="font-size: 0.72rem; color: var(--text-muted);">
         Autonomous paycheck allocation &nbsp;&rarr;&nbsp; real token swaps &nbsp;&rarr;&nbsp; learns from your feedback
       </p>
     </div>
   </div>
 
-  <!-- ====== SLIDE 2: THE PROBLEM ====== -->
+  <!-- ====== 2: PROBLEM + SOLUTION ====== -->
   <div class="slide" data-slide="1">
     <div class="row">
-      <div class="col-wide reveal">
+      <div class="col reveal">
         <h3>The Problem</h3>
-        <h2><span class="serif-i">"Every payday,<br>the same ritual."</span></h2>
+        <h2><span class="serif-i">"Every month,<br>the same ritual."</span></h2>
         <div class="rule"></div>
-        <p style="max-width: 480px;">
-          You manually split your paycheck across bills, savings, and investments.
-          It's tedious. You forget your own rules. You make emotional decisions when markets move.
-        </p>
+        <p>You manually split your paycheck across bills, savings, and investments. You forget your own rules. You make emotional decisions when markets move.</p>
       </div>
-      <div class="col-narrow stack gap-sm reveal" style="margin-top: 2rem;">
-        <div class="code-block"><span class="cm">// every month:</span>
-<span class="hl">1.</span> open bank app
-<span class="hl">2.</span> set aside rent, utilities, internet
-<span class="hl">3.</span> calculate what's left
-<span class="hl">4.</span> open exchange
-<span class="hl">5.</span> buy some ETH... maybe?
-<span class="hl">6.</span> move rest to savings
-<span class="hl">7.</span> forget to do step 5
-<span class="hl">8.</span> repeat</div>
+      <div class="col reveal">
+        <h3>The Solution</h3>
+        <div class="stack-lines">
+          <div class="stack-line"><span class="num">01</span> Set bills and goals <span class="accent">once.</span></div>
+          <div class="stack-line"><span class="num">02</span> Say how much you earned.</div>
+          <div class="stack-line"><span class="num">03</span> Agent allocates + executes <span class="teal">real swaps.</span></div>
+          <div class="stack-line"><span class="num">04</span> Override it? It <span class="accent">learns.</span></div>
+        </div>
+        <p class="mt-2" style="font-size: 0.75rem;">No retraining. In-context learning from override history.</p>
       </div>
     </div>
   </div>
 
-  <!-- ====== SLIDE 3: THE SOLUTION ====== -->
+  <!-- ====== 3: ARCHITECTURE + SWAPS ====== -->
   <div class="slide" data-slide="2">
-    <div class="reveal"><h3>The Solution</h3></div>
-    <div class="stack-lines">
-      <div class="stack-line reveal">
-        <span class="num">01</span> Tell it your bills and goals <span class="accent">once.</span>
-      </div>
-      <div class="stack-line reveal">
-        <span class="num">02</span> Say how much you got paid.
-      </div>
-      <div class="stack-line reveal">
-        <span class="num">03</span> It allocates, quotes, and executes &mdash; <span class="teal">real swaps, on-chain.</span>
-      </div>
-      <div class="stack-line reveal">
-        <span class="num">04</span> Override it? It <span class="accent">learns</span> for next time.
-      </div>
-    </div>
-    <div class="rule reveal"></div>
-    <div class="reveal">
-      <p>No retraining. No fine-tuning. In-context learning from your override history.</p>
-    </div>
-  </div>
-
-  <!-- ====== SLIDE 4: ARCHITECTURE ====== -->
-  <div class="slide" data-slide="3">
     <div class="reveal"><h3>Architecture</h3></div>
-    <div class="reveal"><h2>Four systems, one agent.</h2></div>
     <div class="arch-flow reveal">
       <div class="arch-node">
         <div class="node-label">Telegram Bot</div>
@@ -623,7 +235,7 @@
       <div class="arch-arrow">&rarr;</div>
       <div class="arch-node arch-node--teal">
         <div class="node-label">Uniswap V3</div>
-        <div class="node-sub">Sepolia swaps</div>
+        <div class="node-sub">Real swaps on Sepolia</div>
       </div>
     </div>
     <div class="arch-row-2 reveal">
@@ -631,97 +243,38 @@
         <div class="tech-dot tech-dot--gold"></div>
         <div>
           <div class="node-label">0G Storage</div>
-          <div class="node-sub">Decentralized data persistence &mdash; config, bills, goals, decisions</div>
+          <div class="node-sub">Decentralized persistence &mdash; config, bills, goals, decisions</div>
         </div>
       </div>
       <div class="arch-node-wide">
         <div class="tech-dot tech-dot--gold"></div>
         <div>
           <div class="node-label">ERC-7857 iNFT</div>
-          <div class="node-sub">On-chain data hash anchor on 0G Testnet &mdash; verifiable ownership</div>
+          <div class="node-sub">On-chain data hash anchor &mdash; verifiable ownership</div>
+        </div>
+      </div>
+    </div>
+    <div class="row reveal" style="margin-top: 1.2rem;">
+      <div class="col" style="display: flex; gap: 1.5rem;">
+        <div>
+          <div class="tag tag--teal">Swaps</div>
+          <p style="font-size: 0.72rem;">4 mock tokens, 3 Uniswap V3 pools on official Sepolia factory. Real on-chain transactions.</p>
+        </div>
+        <div>
+          <div class="tag tag--gold">Quotes</div>
+          <p style="font-size: 0.72rem;">3-tier fallback: QuoterV2 &rarr; staticCall &rarr; pool slot0() sqrtPriceX96 math.</p>
+        </div>
+        <div>
+          <div class="tag tag--dim">Failure</div>
+          <p style="font-size: 0.72rem;">Swap fails? Funds stay as USDC. Never crashes.</p>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- ====== SLIDE 5: UNISWAP ENGINE ====== -->
-  <div class="slide" data-slide="4">
-    <div class="reveal"><h3>The Swap Engine</h3></div>
-    <div class="reveal"><h2>Real swaps. Real tokens.<br>Real transactions.</h2></div>
-    <div class="row reveal">
-      <div class="col">
-        <div class="code-block"><span class="cm">// on-chain execution flow</span>
-
-<span class="hl">approve</span>(USDC, SwapRouter02)
-<span class="hl">exactInputSingle</span>({
-  tokenIn:  <span class="tl">USDC</span>,
-  tokenOut: <span class="tl">WETH</span>,
-  fee:      10000,    <span class="cm">// 1%</span>
-  amountIn: 1288e6,
-  amountOutMinimum: <span class="cm">// from quote</span>
-})
-
-<span class="cm">// parse Transfer logs for actual output</span>
-received: <span class="tl">0.639 WETH</span></div>
-      </div>
-      <div class="col stack gap-md">
-        <div>
-          <div class="tag tag--teal">3-tier quote fallback</div>
-          <p class="mt-1" style="font-size: 0.78rem;">QuoterV2 &rarr; Router staticCall &rarr; Pool slot0() math</p>
-          <p style="font-size: 0.72rem; color: var(--text-muted);">Direct sqrtPriceX96 calculation when standard quoters fail on custom pools</p>
-        </div>
-        <div>
-          <div class="tag tag--gold">4 Mock Tokens</div>
-          <p style="font-size: 0.78rem;">USDC &middot; USDT &middot; WETH &middot; DAI</p>
-          <p style="font-size: 0.72rem; color: var(--text-muted);">Deployed on Sepolia, pools on official Uniswap V3 factory</p>
-        </div>
-        <div>
-          <div class="tag tag--dim">Failure handling</div>
-          <p style="font-size: 0.78rem;">Swap fails? Funds stay as USDC. Never crashes.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ====== SLIDE 6: DEMO SETUP ====== -->
-  <div class="slide" data-slide="5">
-    <div class="reveal"><h3>Live Demo</h3></div>
-    <div class="reveal"><h2>Setup &mdash; 60 seconds.</h2></div>
-    <div class="row">
-      <div class="col reveal">
-        <div class="chat">
-          <div class="chat-msg user"><span class="bubble"><span class="chat-cmd">/start</span></span></div>
-          <div class="chat-msg bot"><span class="bubble">Welcome to PayAgent! What's your risk tolerance?</span></div>
-          <div class="chat-msg user"><span class="bubble">Moderate</span></div>
-          <div class="chat-msg bot"><span class="bubble">iNFT minted! Token #1<br>Wallet: 0x1608...4b80</span></div>
-          <div style="height: 8px;"></div>
-          <div class="chat-msg user"><span class="bubble"><span class="chat-cmd">/bills</span></span></div>
-          <div class="chat-msg user"><span class="bubble">Rent $1,500<br>Utilities $200<br>Internet $80</span></div>
-          <div style="height: 8px;"></div>
-          <div class="chat-msg user"><span class="bubble"><span class="chat-cmd">/goals</span></span></div>
-          <div class="chat-msg user"><span class="bubble">ETH Savings &mdash; 40% &rarr; ETH<br>Stablecoin &mdash; 30% &rarr; DAI<br>Emergency &mdash; rest &rarr; USDC</span></div>
-        </div>
-      </div>
-      <div class="col stack gap-md reveal" style="margin-top: 1rem;">
-        <div>
-          <div class="tag tag--gold">On /start</div>
-          <p>Mints ERC-7857 iNFT on 0G Testnet.<br>Stores config in 0G Storage.</p>
-        </div>
-        <div>
-          <div class="tag tag--dim">Bills</div>
-          <p>Fixed monthly expenses. Reserved first, always.</p>
-        </div>
-        <div>
-          <div class="tag tag--teal">Goals</div>
-          <p>Percentage of post-bill remainder.<br>No caps &mdash; scales with income.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ====== SLIDE 7: PAYCHECK 1 ====== -->
-  <div class="slide" data-slide="6">
-    <div class="reveal"><h3>Paycheck #1</h3></div>
+  <!-- ====== 4: PAYCHECK 1 — APPROVE ====== -->
+  <div class="slide" data-slide="3">
+    <div class="reveal"><h3>Paycheck #1 &mdash; Approve</h3></div>
     <div class="row">
       <div class="col-wide reveal">
         <h2>$5,000 &mdash; <span class="teal">Approved</span></h2>
@@ -733,23 +286,23 @@ received: <span class="tl">0.639 WETH</span></div>
             <tr><td>Rent</td><td class="amount">$1,500</td><td class="token">USDC</td><td class="action">Reserve</td></tr>
             <tr><td>Utilities</td><td class="amount">$200</td><td class="token">USDC</td><td class="action">Reserve</td></tr>
             <tr><td>Internet</td><td class="amount">$80</td><td class="token">USDC</td><td class="action">Reserve</td></tr>
-            <tr class="swap"><td>ETH Savings</td><td class="amount">$1,288</td><td class="token">WETH</td><td class="action">Swap &rarr;</td></tr>
-            <tr class="swap"><td>Stablecoin Reserve</td><td class="amount">$966</td><td class="token">DAI</td><td class="action">Swap &rarr;</td></tr>
-            <tr><td>Emergency Fund</td><td class="amount">$966</td><td class="token">USDC</td><td class="action">&mdash;</td></tr>
+            <tr class="swap"><td>ETH Savings (40%)</td><td class="amount">$1,288</td><td class="token">WETH</td><td class="action">Swap &rarr;</td></tr>
+            <tr class="swap"><td>Stablecoin (30%)</td><td class="amount">$966</td><td class="token">DAI</td><td class="action">Swap &rarr;</td></tr>
+            <tr><td>Emergency (rest)</td><td class="amount">$966</td><td class="token">USDC</td><td class="action">&mdash;</td></tr>
           </tbody>
         </table>
       </div>
-      <div class="col-narrow stack gap-md reveal" style="margin-top: 2rem;">
+      <div class="col-narrow stack gap-md reveal" style="margin-top: 1.5rem;">
         <div>
           <div class="tag tag--teal">2 swaps executed</div>
-          <p style="font-size: 0.75rem;">
+          <p style="font-size: 0.72rem;">
             1,288 USDC &rarr; 0.639 WETH<br>
             966 USDC &rarr; 963 DAI
           </p>
         </div>
         <div>
           <div class="tag tag--gold">on-chain</div>
-          <p style="font-size: 0.72rem; color: var(--text-muted);">
+          <p style="font-size: 0.68rem; color: var(--text-muted);">
             Real Sepolia tx hashes.<br>
             Decision &rarr; 0G Storage.<br>
             iNFT hashes updated.
@@ -759,28 +312,28 @@ received: <span class="tl">0.639 WETH</span></div>
     </div>
   </div>
 
-  <!-- ====== SLIDE 8: PAYCHECK 2 ====== -->
-  <div class="slide" data-slide="7">
-    <div class="reveal"><h3>Paycheck #2</h3></div>
+  <!-- ====== 5: PAYCHECK 2 — OVERRIDE ====== -->
+  <div class="slide" data-slide="4">
+    <div class="reveal"><h3>Paycheck #2 &mdash; Override</h3></div>
     <div class="reveal"><h2>$5,000 &mdash; <span class="accent">Overridden</span></h2></div>
     <div class="row">
       <div class="col reveal">
-        <p style="font-size: 0.8rem; margin-bottom: 1rem;">AI proposed the same allocation. User disagrees:</p>
+        <p style="font-size: 0.78rem; margin-bottom: 0.8rem;">AI proposed 40% ETH again. User disagrees:</p>
         <div class="quote-block">
           <p>"Market is volatile. Reduce ETH to 15%, put more in DAI."</p>
         </div>
-        <div class="mt-2" style="display: flex; gap: 2rem;">
+        <div class="mt-2" style="display: flex; gap: 2.5rem;">
           <div>
-            <p style="font-size: 0.65rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em;">ETH allocation</p>
-            <p style="font-size: 1.8rem; font-family: var(--serif);">
+            <p style="font-size: 0.6rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em;">ETH</p>
+            <p style="font-size: 1.6rem; font-family: var(--serif);">
               <span class="dim" style="text-decoration: line-through;">40%</span>
               &nbsp;&rarr;&nbsp;
               <span class="red">15%</span>
             </p>
           </div>
           <div>
-            <p style="font-size: 0.65rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em;">DAI allocation</p>
-            <p style="font-size: 1.8rem; font-family: var(--serif);">
+            <p style="font-size: 0.6rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em;">DAI</p>
+            <p style="font-size: 1.6rem; font-family: var(--serif);">
               <span class="dim" style="text-decoration: line-through;">30%</span>
               &nbsp;&rarr;&nbsp;
               <span class="teal">55%</span>
@@ -788,8 +341,8 @@ received: <span class="tl">0.639 WETH</span></div>
           </div>
         </div>
       </div>
-      <div class="col stack gap-sm reveal" style="margin-top: 1rem;">
-        <div class="code-block" style="font-size: 0.72rem;"><span class="cm">// decision record</span>
+      <div class="col stack gap-sm reveal">
+        <div class="code-block" style="font-size: 0.68rem;"><span class="cm">// decision record</span>
 {
   outcome: <span class="hl">"overridden"</span>,
   reason:  <span class="hl">"Market is volatile,
@@ -798,51 +351,49 @@ received: <span class="tl">0.639 WETH</span></div>
   finalPlan:    { <span class="cm">/* 15% ETH */</span> },
   txHashes: [<span class="tl">"0xa3f..."</span>, <span class="tl">"0xb7c..."</span>]
 }
-
-<span class="cm">// stored in 0G Storage</span>
-<span class="cm">// iNFT hashes updated on-chain</span></div>
-        <div class="tag tag--red" style="margin-top: 0.5rem;">This is the learning signal</div>
+<span class="cm">// saved to 0G Storage + iNFT updated</span></div>
+        <div class="tag tag--red" style="margin-top: 0.3rem;">This is the learning signal</div>
       </div>
     </div>
   </div>
 
-  <!-- ====== SLIDE 9: PAYCHECK 3 — LEARNING ====== -->
-  <div class="slide" data-slide="8">
+  <!-- ====== 6: PAYCHECK 3 — LEARNING ====== -->
+  <div class="slide" data-slide="5">
     <div class="reveal"><h3>Paycheck #3</h3></div>
     <div class="reveal"><h2>The agent <span class="accent">adapts.</span></h2></div>
     <div class="row">
       <div class="col-wide reveal">
-        <p style="margin-bottom: 1.2rem;">ETH allocation across three paychecks:</p>
+        <p style="margin-bottom: 1rem;">ETH allocation across three months:</p>
         <div class="bar-group">
-          <div class="bar-label"><span>Paycheck 1 &mdash; approved</span><span class="accent">40%</span></div>
+          <div class="bar-label"><span>Month 1 &mdash; approved</span><span class="accent">40%</span></div>
           <div class="bar-track"><div class="bar-fill bar-fill--gold" style="width: 40%;">$1,288</div></div>
         </div>
         <div class="bar-group">
-          <div class="bar-label"><span>Paycheck 2 &mdash; <span class="red">overridden</span></span><span class="red">15%</span></div>
+          <div class="bar-label"><span>Month 2 &mdash; <span class="red">overridden</span></span><span class="red">15%</span></div>
           <div class="bar-track"><div class="bar-fill bar-fill--red" style="width: 15%;">$483</div></div>
         </div>
         <div class="bar-group">
-          <div class="bar-label"><span>Paycheck 3 &mdash; <span class="teal">agent adapted</span></span><span class="teal">25%</span></div>
+          <div class="bar-label"><span>Month 3 &mdash; <span class="teal">agent adapted</span></span><span class="teal">25%</span></div>
           <div class="bar-track"><div class="bar-fill bar-fill--teal" style="width: 25%;">$805</div></div>
         </div>
         <div class="mt-2">
-          <p style="font-size: 0.8rem; max-width: 520px;">
-            The LLM receives the full decision history &mdash; including overrides with reasons &mdash; as context.
-            No retraining. No fine-tuning. <span class="accent">Pure in-context learning.</span>
+          <p style="font-size: 0.78rem; max-width: 500px;">
+            Full decision history &mdash; including overrides with reasons &mdash; passed as LLM context.
+            <span class="accent">Pure in-context learning.</span>
           </p>
         </div>
       </div>
       <div class="col-narrow reveal">
-        <div class="stat-grid" style="grid-template-columns: 1fr; gap: 1.8rem; margin-top: 0;">
-          <div class="stat-item">
+        <div class="stat-grid" style="margin-top: 0;">
+          <div>
             <div class="stat-num">3</div>
-            <div class="stat-label">Paychecks processed</div>
+            <div class="stat-label">Months processed</div>
           </div>
-          <div class="stat-item">
+          <div>
             <div class="stat-num" style="color: var(--teal);">6</div>
             <div class="stat-label">On-chain swaps</div>
           </div>
-          <div class="stat-item">
+          <div>
             <div class="stat-num" style="color: var(--accent);">1</div>
             <div class="stat-label">Override learned from</div>
           </div>
@@ -851,8 +402,8 @@ received: <span class="tl">0.639 WETH</span></div>
     </div>
   </div>
 
-  <!-- ====== SLIDE 10: STACK & CLOSING ====== -->
-  <div class="slide" data-slide="9">
+  <!-- ====== 7: TECH STACK ====== -->
+  <div class="slide" data-slide="6">
     <div class="reveal"><h3>Built With</h3></div>
     <div class="row">
       <div class="col reveal">
@@ -892,18 +443,18 @@ received: <span class="tl">0.639 WETH</span></div>
         </div>
       </div>
       <div class="col stack reveal" style="justify-content: center; align-items: flex-start; padding-left: 2vw;">
-        <h2 style="font-size: clamp(1.6rem, 2.5vw, 2.4rem); margin-bottom: 1rem;">
+        <h2 style="font-size: clamp(1.5rem, 2.3vw, 2.2rem); margin-bottom: 0.8rem;">
           Portable. Verifiable.<br>
           <span class="accent">Learns from you.</span>
         </h2>
         <div class="rule"></div>
-        <p style="color: var(--text-muted); font-size: 0.8rem;">
+        <p style="color: var(--text-muted); font-size: 0.78rem;">
           Your AI financial agent lives as an NFT.<br>
           Its data is decentralized. Its decisions are on-chain.<br>
           It gets better every month.
         </p>
-        <div class="mt-3">
-          <p style="font-family: var(--serif); font-style: italic; font-size: 1.3rem; color: var(--text);">
+        <div class="mt-2">
+          <p style="font-family: var(--serif); font-style: italic; font-size: 1.2rem; color: var(--text);">
             Thank you.
           </p>
         </div>
@@ -915,7 +466,7 @@ received: <span class="tl">0.639 WETH</span></div>
 
 <!-- Navigation -->
 <div class="nav">
-  <span id="counter">1 / 10</span>
+  <span id="counter">1 / 7</span>
   <button class="nav-btn" onclick="prev()" aria-label="Previous">&larr;</button>
   <button class="nav-btn" onclick="next()" aria-label="Next">&rarr;</button>
 </div>
@@ -929,11 +480,9 @@ received: <span class="tl">0.639 WETH</span></div>
 
   function goTo(n) {
     if (n < 0 || n >= total || n === current) return;
-    slides[current].classList.remove('active');
-    slides[current].classList.add('exiting');
-    setTimeout(() => slides[current === n ? current : (current < n ? current : current)].classList.remove('exiting'), 600);
-    // Remove exiting from previous after transition
     const prev = current;
+    slides[prev].classList.remove('active');
+    slides[prev].classList.add('exiting');
     setTimeout(() => slides[prev].classList.remove('exiting'), 600);
     current = n;
     slides[current].classList.add('active');
@@ -949,7 +498,6 @@ received: <span class="tl">0.639 WETH</span></div>
     if (e.key === 'ArrowLeft') { e.preventDefault(); prev(); }
   });
 
-  // Touch swipe support
   let touchStartX = 0;
   document.addEventListener('touchstart', (e) => { touchStartX = e.touches[0].clientX; });
   document.addEventListener('touchend', (e) => {
@@ -957,7 +505,6 @@ received: <span class="tl">0.639 WETH</span></div>
     if (Math.abs(diff) > 50) { diff > 0 ? next() : prev(); }
   });
 
-  // Init progress
   progress.style.width = `${(1 / total) * 100}%`;
 </script>
 </body>
